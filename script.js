@@ -2,11 +2,15 @@ console.log('🚀 StudyHub Frontend Loading...');
 
 // Environment configuration
 const getApiBase = () => {
-    // For Vercel deployment
+    // Check if we're in browser environment and have environment variable
+    if (typeof window !== 'undefined' && window.__ENV__ && window.__ENV__.REACT_APP_API_URL) {
+        return window.__ENV__.REACT_APP_API_URL;
+    }
+    // For Vercel environment variables
     if (typeof process !== 'undefined' && process.env && process.env.REACT_APP_API_URL) {
         return process.env.REACT_APP_API_URL;
     }
-    // For local development with backend on Railway
+    // Default to your Railway backend
     return 'https://your-backend-name.up.railway.app';
 };
 
