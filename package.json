@@ -1,9 +1,13 @@
 {
   "name": "studyhub-frontend",
   "version": "1.0.0",
-  "description": "StudyHub Frontend",
+  "description": "StudyHub Frontend - Platform for student community",
+  "type": "module",
   "scripts": {
     "dev": "python -m http.server 3000",
-    "build": "echo 'No build step for static site'"
-  }
+    "build": "echo 'No build process for static site'"
+  },
+  "keywords": ["education", "forum", "documents", "community"],
+  "author": "StudyHub Team",
+  "license": "MIT"
 }
