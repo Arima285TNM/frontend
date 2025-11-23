@@ -1,11 +1,25 @@
+console.log('🚀 StudyHub Frontend Loading...');
+
+// Environment configuration
+const getApiBase = () => {
+    // For Vercel deployment
+    if (typeof process !== 'undefined' && process.env && process.env.REACT_APP_API_URL) {
+        return process.env.REACT_APP_API_URL;
+    }
+    // For local development with backend on Railway
+    return 'https://your-backend-name.up.railway.app';
+};
+
+const API_BASE = getApiBase();
+const DOCUMENTS_API_BASE = API_BASE;
+const FORUM_API_BASE = API_BASE;
+
+console.log('🔗 API Base URL:', API_BASE);
 
 let currentToken = localStorage.getItem('token');
 let currentUser = null;
 let currentCategory = 'all';
 let currentSort = 'newest';
-const API_BASE = process.env.REACT_APP_API_URL || 'https://backend-production-23ea.up.railway.app/';
-const DOCUMENTS_API_BASE = API_BASE;
-const FORUM_API_BASE = API_BASE;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
