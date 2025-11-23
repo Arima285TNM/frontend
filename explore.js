@@ -1,6 +1,9 @@
-console.log('📝 Loading index.js...');
+console.log('🔍 Loading explore.js...');
 
 const getApiBase = () => {
+    if (typeof window !== 'undefined' && window.__ENV__ && window.__ENV__.REACT_APP_API_URL) {
+        return window.__ENV__.REACT_APP_API_URL;
+    }
     if (typeof process !== 'undefined' && process.env && process.env.REACT_APP_API_URL) {
         return process.env.REACT_APP_API_URL;
     }
@@ -8,7 +11,9 @@ const getApiBase = () => {
 };
 
 const API_BASE = getApiBase();
-const FORUM_API_BASE = API_BASE;
+
+console.log('🔗 Explore API Base:', API_BASE);
+
 // explore.js - Left Aligned Team Section
 const teamMembers = [
     {
