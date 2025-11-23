@@ -1,10 +1,14 @@
-const API_BASE = window.location.origin;
-const DOCUMENTS_API_BASE = API_BASE;
-const FORUM_API_BASE = API_BASE;
+console.log('📝 Loading forum.js...');
 
-// if (typeof FORUM_API_BASE === 'undefined') {
-//     const FORUM_API_BASE = "http://localhost:8002";
-// }
+const getApiBase = () => {
+    if (typeof process !== 'undefined' && process.env && process.env.REACT_APP_API_URL) {
+        return process.env.REACT_APP_API_URL;
+    }
+    return 'https://your-backend-name.up.railway.app';
+};
+
+const API_BASE = getApiBase();
+const FORUM_API_BASE = API_BASE;
 var currentForumCategory = 'all';
 
 // Initialize forum
