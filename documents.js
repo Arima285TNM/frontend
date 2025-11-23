@@ -40,16 +40,16 @@ function setupDocumentEvents() {
                 // Get category - CẬP NHẬT MAP MỚI
                 const categoryMap = {
                     'Tất cả': 'all',
-                    'Toán học': 'toan',
-                    'Vật lý': 'ly', 
-                    'Hóa học': 'hoa',
-                    'Ngữ văn': 'van',
-                    'Tiếng Anh': 'anh',
-                    'Lịch sử': 'su',
-                    'Địa lý': 'dia',
-                    'Sinh học': 'sinh',
-                    'Tin học': 'tin',
-                    'Môn học khác': 'khac'
+                    'Toán học': 'math',
+                    'Vật lý': 'science', 
+                    'Hóa học': 'science',
+                    'Ngữ văn': 'language',
+                    'Tiếng Anh': 'language',
+                    'Lịch sử': 'other',
+                    'Địa lý': 'other',
+                    'Sinh học': 'science',
+                    'Tin học': 'technology',
+                    'Môn học khác': 'other'
                 };
                 
                 const category = categoryMap[this.textContent.trim()] || 'all';
