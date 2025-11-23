@@ -3,7 +3,7 @@ let currentToken = localStorage.getItem('token');
 let currentUser = null;
 let currentCategory = 'all';
 let currentSort = 'newest';
-const API_BASE = window.location.origin;
+const API_BASE = process.env.REACT_APP_API_URL || 'https://backend-production-23ea.up.railway.app/';
 const DOCUMENTS_API_BASE = API_BASE;
 const FORUM_API_BASE = API_BASE;
 
