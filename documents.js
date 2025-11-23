@@ -1,17 +1,19 @@
-console.log('📝 Loading forum.js...');
+console.log('📄 Loading documents.js...');
 
 const getApiBase = () => {
+    if (typeof window !== 'undefined' && window.__ENV__ && window.__ENV__.REACT_APP_API_URL) {
+        return window.__ENV__.REACT_APP_API_URL;
+    }
     if (typeof process !== 'undefined' && process.env && process.env.REACT_APP_API_URL) {
         return process.env.REACT_APP_API_URL;
     }
-    return 'https://your-backend-name.up.railway.app';
+    return 'https://backend-production-23ea.up.railway.app/';
 };
 
 const API_BASE = getApiBase();
-const FORUM_API_BASE = API_BASE;
+const DOCUMENTS_API_BASE = API_BASE;
 
-// Documents functionality - Fixed version
-console.log('📄 Loading documents.js...');
+console.log('🔗 Documents API Base:', API_BASE);
 
 // Check if variables already exist to avoid redeclaration
 if (typeof window.currentDocCategory === 'undefined') {
