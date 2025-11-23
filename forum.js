@@ -1,14 +1,21 @@
+// forum.js - Fixed for Production
 console.log('📝 Loading forum.js...');
 
 const getApiBase = () => {
+    if (typeof window !== 'undefined' && window.__ENV__ && window.__ENV__.REACT_APP_API_URL) {
+        return window.__ENV__.REACT_APP_API_URL;
+    }
     if (typeof process !== 'undefined' && process.env && process.env.REACT_APP_API_URL) {
         return process.env.REACT_APP_API_URL;
     }
-    return 'https://your-backend-name.up.railway.app';
+    return 'https://backend-production-23ea.up.railway.app/';
 };
 
 const API_BASE = getApiBase();
 const FORUM_API_BASE = API_BASE;
+
+console.log('🔗 Forum API Base:', API_BASE);
+
 var currentForumCategory = 'all';
 
 // Initialize forum
