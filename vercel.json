@@ -10,7 +10,7 @@
       "use": "@vercel/static"
     },
     {
-      "src": "**/*.css", 
+      "src": "**/*.css",
       "use": "@vercel/static"
     }
   ],
@@ -20,9 +20,14 @@
       "dest": "/index.html"
     },
     {
-      "src": "/(.*)",
+      "src": "/(.*\\.(html|css|js))",
       "dest": "/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ],
-  "cleanUrls": true
+  "cleanUrls": false,
+  "trailingSlash": false
 }
