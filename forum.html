@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diễn đàn - StudyHub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link href="forum.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="explore.html" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                StudyHub
+            </a>
+            
+            <nav class="nav">
+                <a href="explore.html" class="nav-item">Khám phá</a>
+                <a href="forum.html" class="nav-item active">Diễn đàn</a>
+                <a href="documents.html" class="nav-item">Tài liệu</a>
+                <a href="#" class="nav-item">Cộng đồng</a>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Tìm kiếm bài viết...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+
+                <div id="authButtons" class="auth-buttons">
+                    <button class="btn btn-outline" onclick="showAuthModal('login')">Đăng nhập</button>
+                    <button class="btn btn-primary" onclick="showAuthModal('register')">Tạo tài khoản</button>
+                </div>
+
+                <div id="userMenu" class="user-menu" style="display: none;" onclick="toggleUserDropdown()">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <span id="userName">User</span>
+                    <i class="fas fa-chevron-down"></i>
+                    
+                    <div id="userDropdown" class="user-dropdown" style="display: none;">
+                        <div class="dropdown-item" onclick="viewProfile()">
+                            <i class="fas fa-user"></i>
+                            Hồ sơ
+                        </div>
+                        <div class="dropdown-item" onclick="showSettings()">
+                            <i class="fas fa-cog"></i>
+                            Cài đặt
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item logout" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Đăng xuất
+                        </div>
+                    </div>
+                </div>
+
+                <button id="newThreadBtn" class="btn btn-primary" onclick="showNewThreadModal()" style="display: none;">
+                    <i class="fas fa-plus"></i> Bài viết mới
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Forum Container -->
+    <div class="forum-container">
+        <!-- Forum Header -->
+        <div class="forum-header">
+            <h1 class="forum-title">Diễn đàn Học Tập</h1>
+            <p class="forum-subtitle">Nơi trao đổi, thảo luận và chia sẻ kiến thức cùng cộng đồng</p>
+            
+            <!-- Forum Stats -->
+            <div class="forum-stats">
+                <div class="stat-card">
+                    <span class="stat-number" id="totalThreads">1,234</span>
+                    <span class="stat-label">Bài viết</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="totalComments">5,678</span>
+                    <span class="stat-label">Bình luận</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="totalUsers">2,345</span>
+                    <span class="stat-label">Thành viên</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="onlineUsers">128</span>
+                    <span class="stat-label">Đang online</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <button class="btn btn-primary" onclick="showNewThreadModal()">
+                <i class="fas fa-plus"></i>
+                Bài viết mới
+            </button>
+            <button class="btn">
+                <i class="fas fa-search"></i>
+                Tìm kiếm
+            </button>
+            <button class="btn">
+                <i class="fas fa-filter"></i>
+                Lọc
+            </button>
+        </div>
+
+        <!-- Forum Navigation -->
+        <div class="forum-nav">
+            <div class="forum-tabs">
+                <div class="forum-tab active" data-category="all">
+                    <i class="fas fa-globe"></i>
+                    Tất cả
+                </div>
+                <div class="forum-tab" data-category="technology">
+                    <i class="fas fa-laptop-code"></i>
+                    Công nghệ
+                </div>
+                <div class="forum-tab" data-category="math">
+                    <i class="fas fa-calculator"></i>
+                    Toán học
+                </div>
+                <div class="forum-tab" data-category="language">
+                    <i class="fas fa-language"></i>
+                    Ngôn ngữ
+                </div>
+                <div class="forum-tab" data-category="science">
+                    <i class="fas fa-flask"></i>
+                    Khoa học
+                </div>
+                <div class="forum-tab" data-category="questions">
+                    <i class="fas fa-question-circle"></i>
+                    Hỏi đáp
+                </div>
+            </div>
+        </div>
+
+        <!-- Hot Threads -->
+        <div class="hot-threads" id="hotThreads">
+            <!-- Hot threads will be loaded by JavaScript -->
+        </div>
+
+        <!-- Thread List -->
+        <div class="thread-list">
+            <div class="thread-list-header">
+                <div>Chủ đề</div>
+                <div style="text-align: center;">Trả lời</div>
+                <div style="text-align: center;">Lượt xem</div>
+                <div>Bài viết mới nhất</div>
+            </div>
+            
+            <div id="threadsList" id="threadsContainer">
+                <!-- Threads will be loaded by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">StudyHub</div>
+                    <p class="footer-description">
+                        Nền tảng học tập và kết nối cộng đồng sinh viên, học giả và chuyên gia trên toàn thế giới.
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Khám phá</h4>
+                    <a href="#">Khóa học</a>
+                    <a href="forum.html">Diễn đàn</a>
+                    <a href="documents.html">Tài liệu</a>
+                    <a href="#">Sự kiện</a>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Cộng đồng</h4>
+                    <a href="#">Giới thiệu</a>
+                    <a href="#">Hướng dẫn</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Liên hệ</a>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Hỗ trợ</h4>
+                    <a href="#">Trợ giúp</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Điều khoản</a>
+                    <a href="#">Bảo mật</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 StudyHub. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="authModalTitle">Đăng nhập</h3>
+                <button class="modal-close" onclick="closeAuthModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tabs">
+                    <div class="tab active" data-tab="login">Đăng nhập</div>
+                    <div class="tab" data-tab="register">Đăng ký</div>
+                </div>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">Tên đăng nhập</label>
+                        <input type="text" class="form-control" id="loginUsername" placeholder="Nhập tên đăng nhập">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mật khẩu</label>
+                        <input type="password" class="form-control" id="loginPassword" placeholder="Nhập mật khẩu">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="login()" style="width: 100%; padding: 14px;">
+                        Đăng nhập
+                    </button>
+                </form>
+
+                <form id="registerForm" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Tên đăng nhập</label>
+                        <input type="text" class="form-control" id="regUsername" placeholder="Nhập tên đăng nhập">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="regEmail" placeholder="Nhập email">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Họ và tên</label>
+                        <input type="text" class="form-control" id="regFullName" placeholder="Nhập họ và tên">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mật khẩu</label>
+                        <input type="password" class="form-control" id="regPassword" placeholder="Nhập mật khẩu">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="register()" style="width: 100%; padding: 14px;">
+                        Đăng ký
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Thread Modal -->
+    <div id="newThreadModal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3 class="modal-title">Bài viết mới</h3>
+                <button class="modal-close" onclick="closeNewThreadModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="newThreadForm">
+                    <div class="form-group">
+                        <label class="form-label">Tiêu đề</label>
+                        <input type="text" class="form-control" id="threadTitle" placeholder="Nhập tiêu đề bài viết" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Danh mục</label>
+                        <select class="form-control" id="threadCategory" required>
+                            <option value="">Chọn danh mục</option>
+                            <option value="technology">Công nghệ</option>
+                            <option value="math">Toán học</option>
+                            <option value="language">Ngôn ngữ</option>
+                            <option value="science">Khoa học</option>
+                            <option value="questions">Hỏi đáp</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nội dung</label>
+                        <textarea class="form-control" id="threadContent" placeholder="Nhập nội dung bài viết" rows="8" required></textarea>
+                    </div>
+                    <div class="form-actions" style="display: flex; gap: 12px; justify-content: flex-end;">
+                        <button type="button" class="btn" onclick="closeNewThreadModal()">Hủy</button>
+                        <button type="submit" class="btn btn-primary">Đăng bài</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="forum.js"></script>
+</body>
+</html>

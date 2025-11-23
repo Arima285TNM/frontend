@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khám phá - StudyHub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link href="explore.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="explore.html" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                StudyHub
+            </a>
+            
+            <nav class="nav">
+                <a href="explore.html" class="nav-item active">Khám phá</a>
+                <a href="forum.html" class="nav-item">Diễn đàn</a>
+                <a href="documents.html" class="nav-item">Tài liệu</a>
+                <a href="#" class="nav-item">Cộng đồng</a>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Tìm kiếm...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+
+                <div id="authButtons" class="auth-buttons">
+                    <button class="btn btn-outline" onclick="showAuthModal('login')">Đăng nhập</button>
+                    <button class="btn btn-primary" onclick="showAuthModal('register')">Đăng ký</button>
+                </div>
+
+                <div id="userMenu" class="user-menu" style="display: none;" onclick="toggleUserDropdown()">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <span id="userName">User</span>
+                    <i class="fas fa-chevron-down"></i>
+                    
+                    <div id="userDropdown" class="user-dropdown" style="display: none;">
+                        <div class="dropdown-item" onclick="viewProfile()">
+                            <i class="fas fa-user"></i>
+                            Hồ sơ
+                        </div>
+                        <div class="dropdown-item" onclick="showSettings()">
+                            <i class="fas fa-cog"></i>
+                            Cài đặt
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item logout" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Đăng xuất
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Chào mừng đến với StudyHub</h1>
+                <p class="hero-subtitle">Nền tảng học tập và kết nối cộng đồng sinh viên toàn cầu</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="totalMembers">1,000+</span>
+                        <span class="stat-label">Thành viên</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="totalPosts">5,000+</span>
+                        <span class="stat-label">Bài viết</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="totalResources">2,000+</span>
+                        <span class="stat-label">Tài liệu</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Members Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="team-header">
+                <h2 class="section-title">Đội Ngũ Phát Triển</h2>
+                <p class="section-subtitle">Đội ngũ chuyên gia với nhiều năm kinh nghiệm trong lĩnh vực giáo dục và công nghệ</p>
+                <!-- Team stats sẽ được chèn ở đây -->
+            </div>
+            
+            <div id="teamMembers" class="team-members">
+                <!-- Team members sẽ được load ở đây -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Tính năng nổi bật</h2>
+                <p class="section-subtitle">Khám phá tất cả những gì StudyHub mang đến</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="feature-title">Diễn đàn học tập</h3>
+                    <p class="feature-description">
+                        Thảo luận, chia sẻ kiến thức và giải đáp thắc mắc cùng cộng đồng học tập đông đảo.
+                    </p>
+                    <a href="forum.html" class="feature-link">Khám phá diễn đàn →</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Tài liệu học tập</h3>
+                    <p class="feature-description">
+                        Kho tài liệu phong phú với đa dạng chủ đề từ cơ bản đến nâng cao.
+                    </p>
+                    <a href="documents.html" class="feature-link">Xem tài liệu →</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">Cộng đồng kết nối</h3>
+                    <p class="feature-description">
+                        Kết nối với bạn bè, mentor và chuyên gia trong cùng lĩnh vực học tập.
+                    </p>
+                    <a href="#" class="feature-link">Tham gia cộng đồng →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">StudyHub</div>
+                    <p class="footer-description">
+                        Nền tảng học tập và kết nối cộng đồng sinh viên, học giả và chuyên gia trên toàn thế giới.
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Khám phá</h4>
+                    <a href="explore.html">Giới thiệu</a>
+                    <a href="forum.html">Diễn đàn</a>
+                    <a href="documents.html">Tài liệu</a>
+                    <a href="#">Sự kiện</a>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Cộng đồng</h4>
+                    <a href="#">Thành viên</a>
+                    <a href="#">Nhóm học tập</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Liên hệ</a>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Hỗ trợ</h4>
+                    <a href="#">Trợ giúp</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Điều khoản</a>
+                    <a href="#">Bảo mật</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 StudyHub. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="authModalTitle">Đăng nhập</h3>
+                <button class="modal-close" onclick="closeAuthModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tabs">
+                    <div class="tab active" data-tab="login">Đăng nhập</div>
+                    <div class="tab" data-tab="register">Đăng ký</div>
+                </div>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">Tên đăng nhập</label>
+                        <input type="text" class="form-control" id="loginUsername" placeholder="Nhập tên đăng nhập">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mật khẩu</label>
+                        <input type="password" class="form-control" id="loginPassword" placeholder="Nhập mật khẩu">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="login()" style="width: 100%; padding: 14px;">
+                        Đăng nhập
+                    </button>
+                </form>
+
+                <form id="registerForm" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Tên đăng nhập</label>
+                        <input type="text" class="form-control" id="regUsername" placeholder="Nhập tên đăng nhập">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="regEmail" placeholder="Nhập email">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Họ và tên</label>
+                        <input type="text" class="form-control" id="regFullName" placeholder="Nhập họ và tên">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mật khẩu</label>
+                        <input type="password" class="form-control" id="regPassword" placeholder="Nhập mật khẩu">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="register()" style="width: 100%; padding: 14px;">
+                        Đăng ký
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="explore.js"></script>
+</body>
+</html>

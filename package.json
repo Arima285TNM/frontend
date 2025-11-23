@@ -1,0 +1,13 @@
+{
+  "name": "studyweb-frontend",
+  "version": "1.0.0",
+  "description": "StudyHub Frontend",
+  "type": "module",
+  "scripts": {
+    "dev": "python -m http.server 3000",
+    "build": "echo 'No build process needed for static site'"
+  },
+  "static": {
+    "directory": "."
+  }
+}
