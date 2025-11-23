@@ -1,7 +1,14 @@
-const API_BASE = window.location.origin;
-const DOCUMENTS_API_BASE = API_BASE;
-const FORUM_API_BASE = API_BASE;
+console.log('📝 Loading index.js...');
 
+const getApiBase = () => {
+    if (typeof process !== 'undefined' && process.env && process.env.REACT_APP_API_URL) {
+        return process.env.REACT_APP_API_URL;
+    }
+    return 'https://your-backend-name.up.railway.app';
+};
+
+const API_BASE = getApiBase();
+const FORUM_API_BASE = API_BASE;
 // explore.js - Left Aligned Team Section
 const teamMembers = [
     {
